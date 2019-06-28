@@ -11,5 +11,5 @@ import Foundation
 struct Album: Decodable {
     let userId: Int
     let id: Int
-    let title: String
+    var title: String 
 }

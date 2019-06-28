@@ -31,6 +31,9 @@ class AlbumsTableViewController: UITableViewController {
             do {
                 self.albums = try JSONDecoder().decode([Album].self, from: data)
                 self.albums = self.albums.sorted{$0.title < $1.title}
+                self.albums = self.albums.map(){
+                    Album(userId: $0.userId, id: $0.id, title: $0.title.prefix(1).uppercased() + $0.title.dropFirst())
+                }
                 DispatchQueue.main.async { [weak self] in
                     self?.tableView.reloadData()
                 }
