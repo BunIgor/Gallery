@@ -10,13 +10,19 @@ import UIKit
 
 class AlbumTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var idAlbum: UILabel!
-    @IBOutlet weak var userId: UILabel!
-    @IBOutlet weak var title: UILabel!
+    @IBOutlet private weak var idAlbum: UILabel!
+    @IBOutlet private weak var userId: UILabel!
+    @IBOutlet private weak var title: UILabel!
     
     func setCell(_ album: Album) {
         idAlbum.text = "Album Id: " + String(album.id)
         userId.text = "User Id: " + String(album.userId)
         title.text = album.title
+    }
+}
+
+extension NSObject {
+    static var className: String {
+        return String(describing: self)
     }
 }
