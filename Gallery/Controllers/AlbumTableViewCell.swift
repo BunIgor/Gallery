@@ -15,8 +15,8 @@ class AlbumTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     
     func setCell(_ album: Album) {
-        idAlbum.text = String(album.id)
-        userId.text = String(album.userId)
+        idAlbum.text = "Album Id: " + String(album.id)
+        userId.text = "User Id: " + String(album.userId)
         title.text = album.title
     }
 }

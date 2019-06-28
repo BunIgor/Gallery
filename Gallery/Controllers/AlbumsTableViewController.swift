@@ -30,6 +30,7 @@ class AlbumsTableViewController: UITableViewController {
             
             do {
                 self.albums = try JSONDecoder().decode([Album].self, from: data)
+                self.albums = self.albums.sorted{$0.title < $1.title}
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
