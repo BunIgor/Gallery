@@ -11,12 +11,41 @@ import UIKit
 class AlbumsTableViewController: UITableViewController {
     
     private var albums = [Album]()
+    private var photos = [Photo]()
+    private let showAlbumSegueName = "ShowAlbum"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         fetchAlbums()
-
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == showAlbumSegueName {
+            guard let PhotosController = segue.destination as? PhotosCollectionViewController else { return }
+            fetchPhotos()
+            PhotosController.setPhoto(self.photos)
+        }
+    }
+    
+    private func fetchPhotos(){
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/photos") else {
+            return
+        }
+        let semaphore = DispatchSemaphore(value: 0)
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                self.photos = try JSONDecoder().decode([Photo].self, from: data)
+                semaphore.signal()
+            } catch {
+                print("error: ",error.localizedDescription)
+            }
+            }.resume()
+        semaphore.wait()
     }
     
     private func fetchAlbums() {
@@ -53,5 +82,9 @@ class AlbumsTableViewController: UITableViewController {
         cell.setCell(albums[indexPath.row])
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: showAlbumSegueName, sender: self)
     }
 }

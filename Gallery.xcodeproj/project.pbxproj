@@ -17,6 +17,7 @@
 		CE5F712E22C601090059AA92 /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F712D22C601090059AA92 /* AlbumsTableViewController.swift */; };
 		CE5F713022C6011C0059AA92 /* PhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F712F22C6011C0059AA92 /* PhotosCollectionViewController.swift */; };
 		CE5F713222C607350059AA92 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F713122C607350059AA92 /* AlbumTableViewCell.swift */; };
+		CEE2D57E22C63292009051D8 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2D57D22C63292009051D8 /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		CE5F712D22C601090059AA92 /* AlbumsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewController.swift; sourceTree = "<group>"; };
 		CE5F712F22C6011C0059AA92 /* PhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewController.swift; sourceTree = "<group>"; };
 		CE5F713122C607350059AA92 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
+		CEE2D57D22C63292009051D8 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +90,10 @@
 		CE5F712A22C6006A0059AA92 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CE5F713122C607350059AA92 /* AlbumTableViewCell.swift */,
 				CE5F712D22C601090059AA92 /* AlbumsTableViewController.swift */,
+				CE5F713122C607350059AA92 /* AlbumTableViewCell.swift */,
 				CE5F712F22C6011C0059AA92 /* PhotosCollectionViewController.swift */,
+				CEE2D57D22C63292009051D8 /* PhotoCollectionViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE5F712C22C6008E0059AA92 /* Photo.swift in Sources */,
+				CEE2D57E22C63292009051D8 /* PhotoCollectionViewCell.swift in Sources */,
 				CE5F711B22C5FF740059AA92 /* Gallery.xcdatamodeld in Sources */,
 				CE5F711322C5FF740059AA92 /* AppDelegate.swift in Sources */,
 				CE5F713022C6011C0059AA92 /* PhotosCollectionViewController.swift in Sources */,
