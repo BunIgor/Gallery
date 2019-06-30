@@ -13,7 +13,8 @@ class AlbumsTableViewController: UITableViewController {
     private var albums = [Album]()
     private var photos = [Photo]()
     private let showAlbumSegueName = "ShowAlbum"
-    var alertController: UIAlertController! = nil
+    private var alertController: UIAlertController!
+    private var albumId: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,9 @@ class AlbumsTableViewController: UITableViewController {
             guard let PhotosController = segue.destination as? PhotosCollectionViewController else { return }
             
             fetchPhotos()
+            photos = photos.filter({
+                $0.albumId == self.albumId
+            })
             
             PhotosController.setPhoto(self.photos)
         }
@@ -105,6 +109,7 @@ class AlbumsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        albumId = indexPath.row
         performSegue(withIdentifier: showAlbumSegueName, sender: self)
     }
 }
