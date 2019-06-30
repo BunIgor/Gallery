@@ -13,6 +13,7 @@ class AlbumsTableViewController: UITableViewController {
     private var albums = [Album]()
     private var photos = [Photo]()
     private let showAlbumSegueName = "ShowAlbum"
+    var alertController: UIAlertController! = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +24,33 @@ class AlbumsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showAlbumSegueName {
             guard let PhotosController = segue.destination as? PhotosCollectionViewController else { return }
+            
             fetchPhotos()
+            
             PhotosController.setPhoto(self.photos)
         }
+    }
+    
+    private func showAlert() {
+        alertController = UIAlertController(title: "Please wait...", message: nil, preferredStyle: .alert)
+        let activityIndicator = UIActivityIndicatorView(frame: alertController.view.bounds)
+        activityIndicator.style = .gray
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        alertController.view.addSubview(activityIndicator)
+        present(alertController, animated: true, completion: nil)
+        activityIndicator.startAnimating()
+    }
+    
+    private func closeAlert() {
+        alertController.dismiss(animated: true, completion: nil)
     }
     
     private func fetchPhotos(){
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/photos") else {
             return
         }
+        //showAlert()
         let semaphore = DispatchSemaphore(value: 0)
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             guard let data = data else {
@@ -46,6 +65,7 @@ class AlbumsTableViewController: UITableViewController {
             }
             }.resume()
         semaphore.wait()
+        //closeAlert()
     }
     
     private func fetchAlbums() {
