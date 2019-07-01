@@ -15,11 +15,15 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     func setCell(_ photo: Photo) {
         
         guard let url = URL(string: photo.thumbnailUrl) else { return }
-        do {
-            let data =  try Data(contentsOf: url)
-            imageView.image = UIImage(data: data)
-        } catch {
-            print(error.localizedDescription)
+        DispatchQueue.global().async {
+            do {
+                let data = try Data(contentsOf: url)
+                DispatchQueue.main.async { [weak self] in
+                    self?.imageView.image = UIImage(data: data)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
         }
         titleLabel.text = photo.title
     }

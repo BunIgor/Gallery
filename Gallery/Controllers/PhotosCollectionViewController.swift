@@ -19,6 +19,9 @@ class PhotosCollectionViewController: UICollectionViewController {
     
     func setPhoto(_ photo: [Photo]) {
         self.photo = photo
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
