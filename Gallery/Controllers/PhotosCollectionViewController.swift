@@ -10,7 +10,7 @@ import UIKit
 
 
 class PhotosCollectionViewController: UICollectionViewController {
-
+    
     private var photo = [Photo]()
     
     override func viewDidLoad() {
@@ -19,42 +19,49 @@ class PhotosCollectionViewController: UICollectionViewController {
     
     func setPhoto(_ photo: [Photo]) {
         self.photo = photo
+        print(photo)
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
         }
     }
+}
 
+extension PhotosCollectionViewController {
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photo.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.className, for: indexPath) as! PhotoCollectionViewCell
-    
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.className, for: indexPath) as? PhotoCollectionViewCell else {
+            fatalError()
+        }
+        
         cell.setCell(photo[indexPath.row])
-    
+        
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(photo[indexPath.row])
+        
+        let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popUpVCid") as! ModalViewController
         
         guard let url = URL(string: photo[indexPath.row].url) else { return }
-        do {
-            let data =  try Data(contentsOf: url)
-            
-            let modView = UIView(frame: CGRect(x: 0, y: 0, width: 600, height: 600))
-            modView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-            modView.center = view.center
-            let imageView = UIImageView(frame: modView.bounds)
-            modView.addSubview(imageView)
-            //imageView.center = modView.center
-            view.addSubview(modView)
-            
-            imageView.image = UIImage(data: data)
-        } catch {
-            print(error.localizedDescription)
+        DispatchQueue.global().async {
+            do {
+                let data =  try Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    popUpVC.setImage(UIImage(data: data)!)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
         }
+        
+        addChild(popUpVC)
+        popUpVC.view.frame = view.frame
+        view.addSubview(popUpVC.view)
+        
+        popUpVC.didMove(toParent: self)
     }
-    
 }

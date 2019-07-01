@@ -58,7 +58,7 @@ extension AlbumsTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AlbumTableViewCell.className, for: indexPath) as? AlbumTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AlbumTableViewCell.className, for: indexPath) as? AlbumTableViewCell else { fatalError() }
         
         cell.setCell(albums[indexPath.row])
         
@@ -66,7 +66,7 @@ extension AlbumsTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        albumId = indexPath.row
+        albumId = albums[indexPath.row].id
         self.performSegue(withIdentifier: self.showAlbumSegueName, sender: self)
     }
 }
