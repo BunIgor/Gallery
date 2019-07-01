@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="E65-4s-YLD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rw9-z6-eot">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Albums Table View Controller-->
+        <!--Albums-->
         <scene sceneID="ibC-6t-3sC">
             <objects>
                 <tableViewController id="E65-4s-YLD" customClass="AlbumsTableViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
@@ -88,13 +88,14 @@
                             <outlet property="delegate" destination="E65-4s-YLD" id="8wN-OE-At8"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Albums" id="FL8-f0-glI"/>
                     <connections>
                         <segue destination="ENB-YN-9uy" kind="show" identifier="ShowAlbum" id="Fyq-8l-Xjp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u5e-HB-OHS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34.782608695652179" y="85.714285714285708"/>
+            <point key="canvasLocation" x="944.92753623188412" y="85.714285714285708"/>
         </scene>
         <!--Photos Collection View Controller-->
         <scene sceneID="CwW-1Q-NlJ">
@@ -155,7 +156,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="grZ-2S-A0w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="834.78260869565224" y="85.714285714285708"/>
+            <point key="canvasLocation" x="1744.9275362318842" y="85.714285714285708"/>
         </scene>
         <!--Modal View Controller-->
         <scene sceneID="DEX-hh-9dd">
@@ -206,7 +207,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQq-Yu-rG3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1689.8550724637682" y="86.383928571428569"/>
+            <point key="canvasLocation" x="2600" y="86.383928571428569"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VLT-bP-gi9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Rw9-z6-eot" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qMW-Te-bRq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="E65-4s-YLD" kind="relationship" relationship="rootViewController" id="ab5-dM-0gF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n9Z-0T-TZB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34.782608695652179" y="85.714285714285708"/>
         </scene>
     </scenes>
 </document>
