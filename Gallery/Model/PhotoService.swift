@@ -11,9 +11,13 @@ import Foundation
 class PhotoService {
     static let path = "photos"
     
+    static let errorClosure: (Error) -> Void = {
+        print($0)
+    }
+    
     static func fetchPhotos(albumId: Int, completion: @escaping (([Photo])->Void)) {
         let params = ["albumId":"\(albumId)"]
-        NetworkManager.fetch(path: path, params: params) { (data) in
+        NetworkManager.fetch(path: path, params: params, failure: errorClosure) { (data) in
             do {
                 let photos = try JSONDecoder().decode([Photo].self, from: data)
 

@@ -51,22 +51,7 @@ extension PhotosCollectionViewController {
         
         let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ModalViewController.className) as! ModalViewController
         
-        guard let url = URL(string: photos[indexPath.row].url) else { return }
-        DispatchQueue.global().async {
-            do {
-                let data =  try Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    popUpVC.setImage(UIImage(data: data)!)
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        
-        addChild(popUpVC)
-        popUpVC.view.frame = view.frame
-        view.addSubview(popUpVC.view)
-        
-        popUpVC.didMove(toParent: self)
+        popUpVC.urlImage = photos[indexPath.row].url
+        present(popUpVC, animated: true, completion: nil)
     }
 }

@@ -166,7 +166,7 @@
         <!--Modal View Controller-->
         <scene sceneID="DEX-hh-9dd">
             <objects>
-                <viewController storyboardIdentifier="ModalViewController" id="ge7-XO-bak" customClass="ModalViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ModalViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="ge7-XO-bak" customClass="ModalViewController" customModule="Gallery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xl6-QD-Uaw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -175,38 +175,18 @@
                                 <rect key="frame" x="197" y="438" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5Ch-Td-emP">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eee-JE-Nz8">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="vEb-X5-FZZ"/>
-                                        </constraints>
-                                        <state key="normal" title="Cancel"/>
-                                        <connections>
-                                            <action selector="closeAction:" destination="ge7-XO-bak" eventType="touchUpInside" id="3p2-1N-kmp"/>
-                                        </connections>
-                                    </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OcO-7T-Vg8">
-                                        <rect key="frame" x="0.0" y="38" width="414" height="780"/>
-                                    </imageView>
-                                </subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OcO-7T-Vg8">
+                                <rect key="frame" x="0.0" y="241" width="414" height="414"/>
                                 <constraints>
-                                    <constraint firstItem="eee-JE-Nz8" firstAttribute="width" secondItem="5Ch-Td-emP" secondAttribute="width" id="6rR-0K-TKH"/>
-                                    <constraint firstAttribute="bottom" secondItem="OcO-7T-Vg8" secondAttribute="bottom" id="GUM-SN-OoC"/>
-                                    <constraint firstItem="OcO-7T-Vg8" firstAttribute="leading" secondItem="5Ch-Td-emP" secondAttribute="leading" id="L1u-ou-vRz"/>
-                                    <constraint firstAttribute="trailing" secondItem="OcO-7T-Vg8" secondAttribute="trailing" id="XIt-YH-XTc"/>
-                                    <constraint firstItem="OcO-7T-Vg8" firstAttribute="top" secondItem="eee-JE-Nz8" secondAttribute="bottom" constant="8" id="plV-U9-6lf"/>
+                                    <constraint firstAttribute="width" secondItem="OcO-7T-Vg8" secondAttribute="height" id="IB4-hq-WxN"/>
                                 </constraints>
-                            </stackView>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="5Ch-Td-emP" firstAttribute="leading" secondItem="h6k-je-hrP" secondAttribute="leading" id="17w-bu-Iat"/>
-                            <constraint firstItem="h6k-je-hrP" firstAttribute="trailing" secondItem="5Ch-Td-emP" secondAttribute="trailing" id="EAc-xT-Esn"/>
-                            <constraint firstItem="h6k-je-hrP" firstAttribute="bottom" secondItem="5Ch-Td-emP" secondAttribute="bottom" id="uqx-cr-dwl"/>
-                            <constraint firstItem="5Ch-Td-emP" firstAttribute="top" secondItem="h6k-je-hrP" secondAttribute="top" id="zEJ-J6-cUn"/>
+                            <constraint firstItem="OcO-7T-Vg8" firstAttribute="trailing" secondItem="h6k-je-hrP" secondAttribute="trailing" id="14b-yR-gxG"/>
+                            <constraint firstItem="OcO-7T-Vg8" firstAttribute="centerY" secondItem="Xl6-QD-Uaw" secondAttribute="centerY" id="Bm3-nC-oRZ"/>
+                            <constraint firstItem="OcO-7T-Vg8" firstAttribute="leading" secondItem="h6k-je-hrP" secondAttribute="leading" id="XYI-oS-kqp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="h6k-je-hrP"/>
                     </view>
@@ -217,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fQq-Yu-rG3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2600" y="86.383928571428569"/>
+            <point key="canvasLocation" x="2598.5507246376815" y="86.383928571428569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VLT-bP-gi9">

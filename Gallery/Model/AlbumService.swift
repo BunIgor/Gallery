@@ -11,8 +11,12 @@ import Foundation
 class AlbumService {
     static let path = "albums"
     
+    static let errorClosure: (Error) -> Void = {
+        print($0)
+    }
+    
     static func fetchAlbums(completion: @escaping ([Album])->Void){
-        NetworkManager.fetch(path: path, params: nil) { (data) in
+        NetworkManager.fetch(path: path, params: nil, failure: errorClosure) { (data) in
             do {
                 var albums = try JSONDecoder().decode([Album].self, from: data)
                 albums = albums.sorted{$0.title < $1.title}
