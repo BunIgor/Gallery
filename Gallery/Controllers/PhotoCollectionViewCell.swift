@@ -13,6 +13,9 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
     
     func setCell(_ photo: Photo) {
         activityIndicator.hidesWhenStopped = true
