@@ -11,8 +11,18 @@ import Foundation
 class NetworkManager {
     static let domain = "https://jsonplaceholder.typicode.com/"
     
-    static func fetch(path: String, completion: @escaping (Data) -> Void) {
-        guard let url = URL(string: domain+path) else { return }
+    static func fetch(path: String, params: [String:String]?, completion: @escaping (Data) -> Void) {
+        
+        var urlString = domain + path
+        
+        if let params = params, !params.isEmpty {
+            urlString += "?"
+            for (param, value) in params {
+                urlString += param + "=" + value + "&"
+            }
+        }
+        
+        guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             guard let data = data else { return }

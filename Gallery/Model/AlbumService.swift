@@ -12,7 +12,7 @@ class AlbumService {
     static let path = "albums"
     
     static func fetchAlbums(completion: @escaping ([Album])->Void){
-        NetworkManager.fetch(path: path) { (data) in
+        NetworkManager.fetch(path: path, params: nil) { (data) in
             do {
                 var albums = try JSONDecoder().decode([Album].self, from: data)
                 albums = albums.sorted{$0.title < $1.title}

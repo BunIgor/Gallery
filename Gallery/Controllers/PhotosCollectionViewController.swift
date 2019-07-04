@@ -11,25 +11,30 @@ import UIKit
 
 class PhotosCollectionViewController: UICollectionViewController {
     
-    private var photo = [Photo]()
+    var photos = [Photo]() {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
+    }
+    var albumId: Int! {
+        didSet {
+            PhotoService.fetchPhotos(albumId: albumId) { (photos) in
+                self.photos = photos
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    func setPhoto(_ photo: [Photo]) {
-        self.photo = photo
-        print(photo)
-        DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
-        }
     }
 }
 
 extension PhotosCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photo.count
+        return photos.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -37,16 +42,16 @@ extension PhotosCollectionViewController {
             fatalError()
         }
         
-        cell.setCell(photo[indexPath.row])
+        cell.setCell(photos[indexPath.row])
         
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "popUpVCid") as! ModalViewController
+        let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: ModalViewController.className) as! ModalViewController
         
-        guard let url = URL(string: photo[indexPath.row].url) else { return }
+        guard let url = URL(string: photos[indexPath.row].url) else { return }
         DispatchQueue.global().async {
             do {
                 let data =  try Data(contentsOf: url)

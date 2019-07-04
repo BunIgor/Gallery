@@ -12,12 +12,11 @@ class PhotoService {
     static let path = "photos"
     
     static func fetchPhotos(albumId: Int, completion: @escaping (([Photo])->Void)) {
-        NetworkManager.fetch(path: path) { (data) in
+        let params = ["albumId":"\(albumId)"]
+        NetworkManager.fetch(path: path, params: params) { (data) in
             do {
-                var photos = try JSONDecoder().decode([Photo].self, from: data)
-                photos = photos.filter({
-                    $0.albumId == albumId
-                })
+                let photos = try JSONDecoder().decode([Photo].self, from: data)
+
                 completion(photos)
             } catch {
                 print("error: ",error.localizedDescription)

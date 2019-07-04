@@ -27,27 +27,9 @@ class AlbumsTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == showAlbumSegueName {
-            guard let PhotosController = segue.destination as? PhotosCollectionViewController else { return }
-            PhotoService.fetchPhotos(albumId: albumId) { (photos) in
-                PhotosController.setPhoto(photos)
-            }
+        if segue.identifier == showAlbumSegueName, let photosController = segue.destination as? PhotosCollectionViewController {
+                photosController.albumId = albumId
         }
-    }
-    
-    private func showAlert() {
-        alertController = UIAlertController(title: "Please wait...", message: nil, preferredStyle: .alert)
-        let activityIndicator = UIActivityIndicatorView(frame: alertController.view.bounds)
-        activityIndicator.style = .gray
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        alertController.view.addSubview(activityIndicator)
-        present(alertController, animated: true, completion: nil)
-        activityIndicator.startAnimating()
-    }
-    
-    private func closeAlert() {
-        alertController.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -67,6 +49,6 @@ extension AlbumsTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         albumId = albums[indexPath.row].id
-        self.performSegue(withIdentifier: self.showAlbumSegueName, sender: self)
+        performSegue(withIdentifier: showAlbumSegueName, sender: self)
     }
 }
