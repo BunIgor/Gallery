@@ -9,7 +9,7 @@
 import Foundation
 
 class PhotoService {
-    static let path = "photos"
+    static let path = "/photos"
     
     static let errorClosure: (Error) -> Void = {
         print($0)

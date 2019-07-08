@@ -9,20 +9,28 @@
 import Foundation
 
 class NetworkManager {
-    static let domain = "https://jsonplaceholder.typicode.com/"
+    static let scheme = "https"
+    static let host = "jsonplaceholder.typicode.com"
     
     static func fetch(path: String, params: [String:String]?,failure: @escaping (Error) -> Void, success: @escaping (Data) -> Void) {
         
-        var urlString = domain + path
+        var urlComponents = URLComponents()
+        urlComponents.scheme = scheme
+        urlComponents.host = host
+        urlComponents.path = path
         
         if let params = params, !params.isEmpty {
-            urlString += "?"
+            var arrayQueryItems = [URLQueryItem]()
             for (param, value) in params {
-                urlString += param + "=" + value + "&"
+                let urlQueryItem = URLQueryItem(name: param, value: value)
+                arrayQueryItems.append(urlQueryItem)
             }
+            urlComponents.queryItems = arrayQueryItems
         }
         
-        guard let url = URL(string: urlString) else { return }
+        guard let url = urlComponents.url else {
+            return
+        }
         
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let error = error {

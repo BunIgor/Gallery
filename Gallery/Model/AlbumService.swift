@@ -9,7 +9,7 @@
 import Foundation
 
 class AlbumService {
-    static let path = "albums"
+    static let path = "/albums"
     
     static let errorClosure: (Error) -> Void = {
         print($0)
